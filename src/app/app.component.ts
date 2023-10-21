@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,4 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent {
   title = 'to-do-list';
-
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
 }
