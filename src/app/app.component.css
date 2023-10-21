@@ -1,5 +1,34 @@
-table {
+section {
   width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.mat-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 1000px;
+}
+
+td.mat-cell {
+  margin-right: 1rem;
 }
 
 div.mat-chip {
@@ -12,4 +41,9 @@ div.mat-chip {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+div.table-footer {
+  width: 78.375rem;
+  height: 23.75;
 }

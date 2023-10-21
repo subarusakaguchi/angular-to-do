@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ObjectValues } from 'src/utils/objectValue';
+import * as dayjs from 'dayjs';
+import { FormControl } from '@angular/forms';
 
 const POSSIBLE_TASK_STATUS = {
   OPEN: 'Aberto',
@@ -21,7 +23,7 @@ export interface TaskRowInfo {
   task: string;
   cpf: string;
   responsible: string;
-  dueDate: Date;
+  dueDate: string;
   status: TaskStatus;
   statusColor: TaskStatusColor;
 }
@@ -31,7 +33,7 @@ const ELEMENT_DATA: TaskRowInfo[] = [
     task: 'Primeira tarefa',
     cpf: '123.456.789-00',
     responsible: 'Subaru',
-    dueDate: new Date(),
+    dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Aberto',
     statusColor: 'info',
   },
@@ -39,7 +41,7 @@ const ELEMENT_DATA: TaskRowInfo[] = [
     task: 'Segunda tarefa',
     cpf: '123.456.789-00',
     responsible: 'Subaru',
-    dueDate: new Date(),
+    dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Concluído',
     statusColor: 'success',
   },
@@ -47,7 +49,7 @@ const ELEMENT_DATA: TaskRowInfo[] = [
     task: 'Terceira tarefa',
     cpf: '123.456.789-00',
     responsible: 'Subaru',
-    dueDate: new Date(),
+    dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Expirado',
     statusColor: 'warn',
   },
@@ -55,7 +57,7 @@ const ELEMENT_DATA: TaskRowInfo[] = [
     task: 'Quarta tarefa',
     cpf: '123.456.789-00',
     responsible: 'Subaru',
-    dueDate: new Date(),
+    dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Aberto',
     statusColor: 'info',
   },
@@ -69,6 +71,7 @@ const ELEMENT_DATA: TaskRowInfo[] = [
 export class AppComponent {
   title = 'to-do-list';
   displayedColumns: string[] = [
+    'checkbox',
     'task',
     'cpf',
     'responsible',
@@ -76,4 +79,7 @@ export class AppComponent {
     'status',
   ];
   dataSource = ELEMENT_DATA;
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
 }
