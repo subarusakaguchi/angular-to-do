@@ -1,3 +1,21 @@
+// English:
+/* Since Material UI only accepts full color range to use a specific color, i used this to set of colors to utilize the palette given by the Figma project that is:
+- Primary: #FEFEFD
+- Secondary: #E0E0E0
+- Success: #C3F7D6
+- Info: #D4ECFF
+- Warn: #FEECED
+*/
+
+// Português:
+/* Como o Material UI apenas aceita utilizar ranges completos de cores como definição das paletas, eu utilizei os sets de cores abaixo para poder aplciar as que foram me repassadas do projeto no Figma:
+- Primária: #FEFEFD
+- Secundária: #E0E0E0
+- Sucesso: #C3F7D6
+- Informação: #D4ECFF
+- Aviso: #FEECED
+*/
+
 $primary500: (
   50: #ffffff,
   100: #fffffe,

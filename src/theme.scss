@@ -4,6 +4,7 @@
 @import "../node_modules/@angular/material/theming";
 @include mat-core();
 
+// Definition of the color palettes
 $my-primary: mat.define-palette(custom.$primary500, 500);
 $my-accent: mat.define-palette(mat.$gray-palette, 500);
 $my-warn: mat.define-palette(custom.$warn500, 500);
@@ -22,6 +23,7 @@ $my-theme: mat.define-light-theme(
   )
 );
 
+// Typography definition
 $my-custom-typography: mat.define-typography-config(
   $font-family: "Roboto",
   $headline: mat.define-typography-level(24px, 24px, 600),
