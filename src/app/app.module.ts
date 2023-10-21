@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TarefaListaComponent } from './components/tarefa-lista-component/tarefa-lista.component';
+import { TarefaService } from './services/tarefa-service.service';
 
 @NgModule({
   declarations: [AppComponent, TarefaListaComponent, TaskFormComponent],
@@ -33,7 +34,7 @@ import { TarefaListaComponent } from './components/tarefa-lista-component/tarefa
     MatNativeDateModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [TarefaService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

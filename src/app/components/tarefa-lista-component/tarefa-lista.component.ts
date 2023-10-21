@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MOCK_DATA } from './interfaces/mockData';
+import { TarefaService } from 'src/app/services/tarefa-service.service';
+import { TaskRowInfo } from './interfaces';
 
 @Component({
   selector: 'app-tarefa-lista',
@@ -7,10 +9,6 @@ import { MOCK_DATA } from './interfaces/mockData';
   styleUrls: ['./tarefa-lista.component.css'],
 })
 export class TarefaListaComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-
   displayedColumns: string[] = [
     'checkbox',
     'task',
@@ -19,5 +17,12 @@ export class TarefaListaComponent implements OnInit {
     'dueDate',
     'status',
   ];
-  dataSource = MOCK_DATA;
+
+  dataSource: TaskRowInfo[] = [];
+
+  constructor(private todoListService: TarefaService) {}
+
+  ngOnInit(): void {
+    this.dataSource = this.todoListService.listToDos();
+  }
 }
