@@ -1,11 +1,11 @@
-<form name="main-form" action="">
+<form name="main-form" [formGroup]="applyForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <mat-label>Título da tarefa</mat-label>
     <input
       type="text"
       matInput
       placeholder="Pick one"
-      [formControl]="myControl"
+      formControlName="task"
       [matAutocomplete]="auto"
     />
     <mat-autocomplete #auto="matAutocomplete">
@@ -21,7 +21,7 @@
       type="text"
       matInput
       placeholder="Pick one"
-      [formControl]="myControl"
+      formControlName="responsible"
       [matAutocomplete]="auto"
     />
     <mat-autocomplete #auto="matAutocomplete">
@@ -37,7 +37,7 @@
       type="text"
       matInput
       placeholder="Pick one"
-      [formControl]="myControl"
+      formControlName="cpf"
       [matAutocomplete]="auto"
     />
     <mat-autocomplete #auto="matAutocomplete">
@@ -51,7 +51,7 @@
     <mat-label>Choose a date</mat-label>
     <input
       matInput
-      formControlName="main-form"
+      formControlName="dueDate"
       [matDatepicker]="datePicker"
       (click)="datePicker.open()"
     />

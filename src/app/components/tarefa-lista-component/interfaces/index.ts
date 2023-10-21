@@ -1,12 +1,12 @@
 import { ObjectValues } from 'src/utils/objectValue';
 
-const POSSIBLE_TASK_STATUS = {
+export const POSSIBLE_TASK_STATUS = {
   OPEN: 'Aberto',
   CLOSED: 'Concluído',
   EXPIRED: 'Expirado',
 } as const;
 
-const POSSIBLE_STATUS_COLOR = {
+export const POSSIBLE_STATUS_COLOR = {
   INFO: 'info',
   SUCCESS: 'success',
   WARN: 'warn',

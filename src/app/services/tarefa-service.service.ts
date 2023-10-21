@@ -13,4 +13,9 @@ export class TarefaService {
   listToDos(): TaskRowInfo[] {
     return this.list;
   }
+
+  addNewTodo(newTodo: TaskRowInfo): void {
+    console.log(newTodo);
+    this.list.push(newTodo);
+  }
 }
