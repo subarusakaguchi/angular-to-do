@@ -13,12 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TarefaListaComponent } from './components/tarefa-lista-component/tarefa-lista.component';
 import { TarefaService } from './services/tarefa-service.service';
 
 @NgModule({
-  declarations: [AppComponent, TarefaListaComponent, TaskFormComponent],
+  declarations: [AppComponent, TarefaListaComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

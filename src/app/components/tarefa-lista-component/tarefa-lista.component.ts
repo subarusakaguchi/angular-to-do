@@ -1,5 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MOCK_DATA } from './interfaces/mockData';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { TarefaService } from 'src/app/services/tarefa-service.service';
 import { TaskRowInfo } from './interfaces';
 import { MatTable } from '@angular/material/table';
@@ -10,6 +16,7 @@ import { MatTable } from '@angular/material/table';
   styleUrls: ['./tarefa-lista.component.css'],
 })
 export class TarefaListaComponent implements OnInit {
+  @Input() dataSource: TaskRowInfo[];
   @ViewChild(MatTable) table!: MatTable<any>;
 
   displayedColumns: string[] = [
@@ -21,11 +28,16 @@ export class TarefaListaComponent implements OnInit {
     'status',
   ];
 
-  dataSource: TaskRowInfo[] = [];
-
-  constructor(private todoListService: TarefaService) {}
-
-  ngOnInit(): void {
+  constructor(private todoListService: TarefaService) {
     this.dataSource = this.todoListService.listToDos();
+  }
+
+  ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    if (this.dataSource) {
+      console.log('Teste');
+      this.table.renderRows();
+    }
   }
 }

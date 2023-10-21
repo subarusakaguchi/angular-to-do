@@ -5,3 +5,16 @@ section {
   align-items: center;
   justify-content: center;
 }
+
+form {
+  width: 1000px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+button.mat-button {
+  background-color: #4caf50;
+  color: white;
+  height: 63px;
+}

@@ -17,10 +17,12 @@ type TaskStatus = ObjectValues<typeof POSSIBLE_TASK_STATUS>;
 type TaskStatusColor = ObjectValues<typeof POSSIBLE_STATUS_COLOR>;
 
 export interface TaskRowInfo {
+  taskId: number;
   task: string;
   cpf: string;
   responsible: string;
   dueDate: string;
   status: TaskStatus;
   statusColor: TaskStatusColor;
+  isCompleted: boolean;
 }
