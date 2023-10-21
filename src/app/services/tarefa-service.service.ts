@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { MOCK_DATA } from '../components/tarefa-lista-component/interfaces/mockData';
 import { TaskRowInfo } from '../components/tarefa-lista-component/interfaces';
+import { MatTable } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class TarefaService {
   }
 
   addNewTodo(newTodo: TaskRowInfo): void {
-    console.log(newTodo);
-    this.list.push(newTodo);
+    const newTodoList = [...this.list, newTodo];
+
+    this.list = newTodoList;
   }
 }

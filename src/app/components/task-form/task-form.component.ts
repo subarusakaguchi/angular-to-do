@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
   POSSIBLE_STATUS_COLOR,
   POSSIBLE_TASK_STATUS,
+  TaskRowInfo,
 } from '../tarefa-lista-component/interfaces';
 import { TarefaService } from 'src/app/services/tarefa-service.service';
 import * as dayjs from 'dayjs';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-task-form',
