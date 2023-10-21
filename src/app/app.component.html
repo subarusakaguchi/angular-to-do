@@ -70,44 +70,5 @@
 </section>
 
 <section>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="checkbox">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element"><mat-checkbox></mat-checkbox></td>
-    </ng-container>
-
-    <ng-container matColumnDef="task">
-      <th mat-header-cell *matHeaderCellDef>Tarefa</th>
-      <td mat-cell *matCellDef="let element">{{ element.task }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="cpf">
-      <th mat-header-cell *matHeaderCellDef>CPF</th>
-      <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="responsible">
-      <th mat-header-cell *matHeaderCellDef>Responsável</th>
-      <td mat-cell *matCellDef="let element">{{ element.responsible }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="dueDate">
-      <th mat-header-cell *matHeaderCellDef>Prazo de entrega</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.dueDate }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let element">
-        <div mat-chip disableRipple selected [color]="element.statusColor">
-          {{ element.status }}
-        </div>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+  <app-tarefa-lista-component></app-tarefa-lista-component>
 </section>

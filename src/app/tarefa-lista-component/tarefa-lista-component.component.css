@@ -1,0 +1,19 @@
+table {
+  width: 1000px;
+}
+
+td.mat-cell {
+  margin-right: 1rem;
+}
+
+div.mat-chip {
+  height: 24px;
+  width: 96px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
