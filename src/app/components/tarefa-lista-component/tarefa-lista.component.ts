@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MOCK_DATA } from './interfaces/mockData';
 
 @Component({
-  selector: 'app-tarefa-lista-component',
-  templateUrl: './tarefa-lista-component.component.html',
-  styleUrls: ['./tarefa-lista-component.component.css'],
+  selector: 'app-tarefa-lista',
+  templateUrl: './tarefa-lista.component.html',
+  styleUrls: ['./tarefa-lista.component.css'],
 })
-export class TarefaListaComponentComponent implements OnInit {
+export class TarefaListaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
