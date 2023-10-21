@@ -13,9 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { TarefaListaComponentComponent } from './tarefa-lista-component/tarefa-lista-component.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TarefaListaComponentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
