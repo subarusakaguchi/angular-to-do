@@ -41,7 +41,7 @@ export class AppComponent {
     this.todoListService.addNewTodo({
       taskId:
         this.dataSource && this.dataSource.length > 0
-          ? this.dataSource[this.dataSource.length - 1].taskId + 1
+          ? this.dataSource[0].taskId + 1
           : 1,
       task: task ?? '',
       cpf: cpf ?? '',

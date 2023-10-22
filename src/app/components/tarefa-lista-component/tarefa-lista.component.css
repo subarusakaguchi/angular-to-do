@@ -1,9 +1,15 @@
 table {
-  width: 1000px;
+  width: 100%;
 }
 
 div.column-header {
   font-weight: 600;
+}
+
+div.filter-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 td.mat-cell {

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TarefaService } from 'src/app/services/tarefa/tarefa.service';
-import { TaskRowInfo } from './interfaces';
+import { FilterValues, ISelectOption, TaskRowInfo } from './interfaces';
 import { MatTable } from '@angular/material/table';
 
 @Component({
@@ -12,14 +12,20 @@ export class TarefaListaComponent implements OnInit {
   @Input() dataSource: TaskRowInfo[];
   @ViewChild(MatTable) table!: MatTable<any>;
 
+  filterOptions: ISelectOption[] = [
+    { value: 'all', viewValue: 'TODAS' },
+    { value: 'closed', viewValue: 'CONCLUÍDAS' },
+    { value: 'not_closed', viewValue: 'NÃO CONCLUÍDAS' },
+  ];
+
   displayedColumns: string[] = [
+    'remove',
     'checkbox',
     'task',
     'cpf',
     'responsible',
     'dueDate',
     'status',
-    'remove',
   ];
 
   constructor(private todoListService: TarefaService) {
@@ -29,13 +35,18 @@ export class TarefaListaComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
+    console.log(this.dataSource);
     if (this.dataSource) {
       this.table.renderRows();
     }
   }
 
   handleCheckbox(id: number) {
-    this.todoListService.changeCheckBoxStatus(id);
+    const newDataSource = this.todoListService.changeCheckBoxStatus(id);
+
+    if (newDataSource) {
+      this.dataSource = newDataSource;
+    }
   }
 
   removeRow(id: number) {
@@ -44,5 +55,20 @@ export class TarefaListaComponent implements OnInit {
     this.dataSource = newTodoList;
 
     this.table.renderRows();
+  }
+
+  handleTaskFilter(filterValue: FilterValues) {
+    console.log(filterValue);
+    let newDataSource = this.dataSource;
+
+    if (filterValue === 'all') {
+      newDataSource = [...this.todoListService.filterByAll()];
+    } else if (filterValue === 'closed') {
+      newDataSource = [...this.todoListService.filterByClosed()];
+    } else if (filterValue === 'not_closed') {
+      newDataSource = [...this.todoListService.filterByNotClosed()];
+    }
+
+    this.dataSource = newDataSource;
   }
 }

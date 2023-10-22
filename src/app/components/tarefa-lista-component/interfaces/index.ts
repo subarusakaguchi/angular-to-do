@@ -12,9 +12,17 @@ export const POSSIBLE_STATUS_COLOR = {
   WARN: 'warn',
 } as const;
 
+const POSSIBLE_FILTERS = {
+  ALL: 'all',
+  CLOSED: 'closed',
+  NOT_CLOSED: 'not_closed',
+} as const;
+
 type TaskStatus = ObjectValues<typeof POSSIBLE_TASK_STATUS>;
 
 type TaskStatusColor = ObjectValues<typeof POSSIBLE_STATUS_COLOR>;
+
+export type FilterValues = ObjectValues<typeof POSSIBLE_FILTERS>;
 
 export interface TaskRowInfo {
   taskId: number;
@@ -25,4 +33,9 @@ export interface TaskRowInfo {
   status: TaskStatus;
   statusColor: TaskStatusColor;
   isCompleted: boolean;
+}
+
+export interface ISelectOption {
+  value: FilterValues;
+  viewValue: string;
 }

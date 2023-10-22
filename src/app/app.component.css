@@ -1,13 +1,9 @@
 section {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 1000px;
 }
 
 form {
-  width: 1000px;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
