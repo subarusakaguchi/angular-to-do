@@ -7,8 +7,8 @@ export const POSSIBLE_TASK_STATUS = {
 } as const;
 
 export const POSSIBLE_STATUS_COLOR = {
-  INFO: 'info',
-  SUCCESS: 'success',
+  SECONDARY: 'secondary',
+  PRIMARY: 'primary',
   WARN: 'warn',
 } as const;
 

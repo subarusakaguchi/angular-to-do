@@ -1,17 +1,6 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-  EventEmitter,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TarefaService } from 'src/app/services/tarefa-service.service';
-import {
-  POSSIBLE_STATUS_COLOR,
-  POSSIBLE_TASK_STATUS,
-  TaskRowInfo,
-} from './interfaces';
+import { TaskRowInfo } from './interfaces';
 import { MatTable } from '@angular/material/table';
 
 @Component({
@@ -30,6 +19,7 @@ export class TarefaListaComponent implements OnInit {
     'responsible',
     'dueDate',
     'status',
+    'remove',
   ];
 
   constructor(private todoListService: TarefaService) {
@@ -45,10 +35,14 @@ export class TarefaListaComponent implements OnInit {
   }
 
   handleCheckbox(id: number) {
-    const newDataSource = this.todoListService.changeCheckBoxStatus(id);
+    this.todoListService.changeCheckBoxStatus(id);
+  }
 
-    if (newDataSource) {
-      this.dataSource = newDataSource;
-    }
+  removeRow(id: number) {
+    const newTodoList = this.todoListService.removeTodo(id);
+
+    this.dataSource = newTodoList;
+
+    this.table.renderRows();
   }
 }

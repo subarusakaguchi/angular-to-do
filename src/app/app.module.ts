@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TarefaListaComponent } from './components/tarefa-lista-component/tarefa-lista.component';
 import { TarefaService } from './services/tarefa-service.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, TarefaListaComponent],
@@ -32,6 +33,7 @@ import { TarefaService } from './services/tarefa-service.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatIconModule
   ],
   providers: [TarefaService],
   bootstrap: [AppComponent],

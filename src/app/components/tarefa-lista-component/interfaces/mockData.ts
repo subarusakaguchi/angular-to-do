@@ -9,7 +9,7 @@ export const MOCK_DATA: TaskRowInfo[] = [
     responsible: 'Subaru',
     dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Aberto',
-    statusColor: 'info',
+    statusColor: 'secondary',
     isCompleted: false,
   },
   {
@@ -19,7 +19,7 @@ export const MOCK_DATA: TaskRowInfo[] = [
     responsible: 'Subaru',
     dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Concluído',
-    statusColor: 'success',
+    statusColor: 'primary',
     isCompleted: true,
   },
   {
@@ -39,7 +39,7 @@ export const MOCK_DATA: TaskRowInfo[] = [
     responsible: 'Subaru',
     dueDate: dayjs().format('DD/MM/YYYY - HH:mm:ss'),
     status: 'Aberto',
-    statusColor: 'info',
+    statusColor: 'secondary',
     isCompleted: false,
   },
 ];

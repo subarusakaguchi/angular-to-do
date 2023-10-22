@@ -10,6 +10,7 @@ import {
   providedIn: 'root',
 })
 export class TarefaService {
+  private readonly LOCAL_STORAGE_KEY: string = 'ANGULAR12_TODO_PROJECT';
   private list: TaskRowInfo[] = MOCK_DATA;
 
   constructor() {}
@@ -24,25 +25,31 @@ export class TarefaService {
     this.list = newTodoList;
   }
 
-  changeCheckBoxStatus(id: number): TaskRowInfo[] | void {
+  removeTodo(id: number): TaskRowInfo[] {
+    const filteredList = this.list.filter((item) => item.taskId !== id);
+
+    const newTodoList = [...filteredList];
+
+    this.list = newTodoList;
+
+    return this.list;
+  }
+
+  changeCheckBoxStatus(id: number): void {
     const updatedTodo = this.list.find((item) => item.taskId === id);
 
     if (updatedTodo) {
       if (updatedTodo.isCompleted) {
         updatedTodo.isCompleted = !updatedTodo.isCompleted;
         updatedTodo.status = POSSIBLE_TASK_STATUS.OPEN;
-        updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.INFO;
+        updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.SECONDARY;
       } else {
         updatedTodo.isCompleted = !updatedTodo.isCompleted;
         updatedTodo.status = POSSIBLE_TASK_STATUS.CLOSED;
-        updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.SUCCESS;
+        updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.PRIMARY;
       }
 
-      const newTodoList = this.updateTodo(updatedTodo);
-
-      if (newTodoList) {
-        return newTodoList;
-      }
+      this.updateTodo(updatedTodo);
     }
   }
 

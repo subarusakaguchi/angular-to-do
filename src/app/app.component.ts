@@ -29,7 +29,7 @@ export class AppComponent {
     responsible: new FormControl(''),
     dueDate: new FormControl(''),
     status: new FormControl(POSSIBLE_TASK_STATUS.OPEN),
-    statusColor: new FormControl(POSSIBLE_STATUS_COLOR.INFO),
+    statusColor: new FormControl(POSSIBLE_STATUS_COLOR.SECONDARY),
   });
 
   options: string[] = [];
@@ -48,7 +48,7 @@ export class AppComponent {
       responsible: responsible ?? '',
       dueDate: dueDate ? dayjs(dueDate as Date).format('DD/MM/YY') : '',
       status: status ?? POSSIBLE_TASK_STATUS.OPEN,
-      statusColor: statusColor ?? POSSIBLE_STATUS_COLOR.INFO,
+      statusColor: statusColor ?? POSSIBLE_STATUS_COLOR.SECONDARY,
       isCompleted: false,
     });
 
@@ -58,7 +58,7 @@ export class AppComponent {
       responsible: new FormControl(''),
       dueDate: new FormControl(''),
       status: new FormControl(POSSIBLE_TASK_STATUS.OPEN),
-      statusColor: new FormControl(POSSIBLE_STATUS_COLOR.INFO),
+      statusColor: new FormControl(POSSIBLE_STATUS_COLOR.SECONDARY),
     });
 
     this.dataSource = this.todoListService.listToDos();
