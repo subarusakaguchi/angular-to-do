@@ -5,15 +5,19 @@ import {
   POSSIBLE_TASK_STATUS,
   TaskRowInfo,
 } from '../../components/tarefa-lista-component/interfaces';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TarefaService {
   private readonly LOCAL_STORAGE_KEY: string = 'ANGULAR12_TODO_PROJECT';
-  private list: TaskRowInfo[] = MOCK_DATA;
+  private list: TaskRowInfo[];
 
-  constructor() {}
+  constructor(private storageService: StorageService) {
+    this.list =
+      this.storageService.getData(this.LOCAL_STORAGE_KEY) ?? MOCK_DATA;
+  }
 
   listToDos(): TaskRowInfo[] {
     return this.list;
@@ -23,6 +27,8 @@ export class TarefaService {
     const newTodoList = [...this.list, newTodo];
 
     this.list = newTodoList;
+
+    this.saveOnStorage();
   }
 
   removeTodo(id: number): TaskRowInfo[] {
@@ -31,6 +37,8 @@ export class TarefaService {
     const newTodoList = [...filteredList];
 
     this.list = newTodoList;
+
+    this.saveOnStorage();
 
     return this.list;
   }
@@ -65,7 +73,16 @@ export class TarefaService {
 
       this.list = newTodoList;
 
+      this.saveOnStorage();
+
       return this.list;
     }
+  }
+
+  private saveOnStorage() {
+    this.storageService.saveData({
+      key: this.LOCAL_STORAGE_KEY,
+      data: this.list,
+    });
   }
 }
