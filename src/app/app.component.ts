@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TarefaService } from './services/tarefa-service.service';
+import { TarefaService } from './services/tarefa/tarefa.service';
 import {
   POSSIBLE_STATUS_COLOR,
   POSSIBLE_TASK_STATUS,

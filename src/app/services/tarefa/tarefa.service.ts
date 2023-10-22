@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MOCK_DATA } from '../components/tarefa-lista-component/interfaces/mockData';
+import { MOCK_DATA } from '../../components/tarefa-lista-component/interfaces/mockData';
 import {
   POSSIBLE_STATUS_COLOR,
   POSSIBLE_TASK_STATUS,
   TaskRowInfo,
-} from '../components/tarefa-lista-component/interfaces';
+} from '../../components/tarefa-lista-component/interfaces';
 
 @Injectable({
   providedIn: 'root',

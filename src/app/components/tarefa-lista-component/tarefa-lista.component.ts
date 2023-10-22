@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { TarefaService } from 'src/app/services/tarefa-service.service';
+import { TarefaService } from 'src/app/services/tarefa/tarefa.service';
 import { TaskRowInfo } from './interfaces';
 import { MatTable } from '@angular/material/table';
 
