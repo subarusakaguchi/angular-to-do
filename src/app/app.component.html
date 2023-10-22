@@ -5,17 +5,21 @@
     <mat-form-field appearance="outline">
       <mat-label>Título da tarefa</mat-label>
       <input
+        id="task"
         type="text"
         matInput
-        placeholder="Pick one"
+        placeholder="Ex: Organizar os arquivos"
         formControlName="task"
         [matAutocomplete]="auto"
+        required
       />
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of options" [value]="option">
           {{ option }}
         </mat-option>
       </mat-autocomplete>
+
+      <mat-error *ngIf="!applyForm.value.task">Título é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -23,7 +27,7 @@
       <input
         type="text"
         matInput
-        placeholder="Pick one"
+        placeholder="Ex: João das Neves"
         formControlName="responsible"
         [matAutocomplete]="auto"
       />
@@ -32,14 +36,18 @@
           {{ option }}
         </mat-option>
       </mat-autocomplete>
+
+      <mat-error *ngIf="!applyForm.value.responsible">
+        Responsável é obrigatório
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>CPF</mat-label>
+      <mat-label>CPF (Apenas números)</mat-label>
       <input
         type="text"
         matInput
-        placeholder="Pick one"
+        placeholder="123.456.789-00"
         formControlName="cpf"
         [matAutocomplete]="auto"
       />
@@ -48,6 +56,16 @@
           {{ option }}
         </mat-option>
       </mat-autocomplete>
+
+      <mat-error
+        *ngIf="
+          !applyForm.value.cpf ||
+          (applyForm.errors &&
+            (applyForm.errors.invalidFormat || applyForm.errors.invalidCPF))
+        "
+      >
+        Digite um CPF válido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">

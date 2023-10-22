@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TarefaService } from './services/tarefa/tarefa.service';
 import {
   POSSIBLE_STATUS_COLOR,
@@ -7,6 +7,7 @@ import {
   TaskRowInfo,
 } from './components/tarefa-lista-component/interfaces';
 import * as dayjs from 'dayjs';
+import { cpfValidator } from 'src/utils/validateCpf';
 
 @Component({
   selector: 'app-root',
@@ -23,18 +24,31 @@ export class AppComponent {
 
   ngOnInit(): void {}
 
-  applyForm = new FormGroup({
-    task: new FormControl(''),
-    cpf: new FormControl(''),
-    responsible: new FormControl(''),
-    dueDate: new FormControl(''),
-    status: new FormControl(POSSIBLE_TASK_STATUS.OPEN),
-    statusColor: new FormControl(POSSIBLE_STATUS_COLOR.SECONDARY),
-  });
+  applyForm = new FormGroup(
+    {
+      task: new FormControl('', [Validators.required]),
+      cpf: new FormControl('', [
+        Validators.required,
+        Validators.minLength(11),
+        Validators.maxLength(11),
+        Validators.pattern(/(\d{3})(\d{3})(\d{3})(\d{2})/),
+      ]),
+      responsible: new FormControl('', [Validators.required]),
+      dueDate: new FormControl(''),
+      status: new FormControl(POSSIBLE_TASK_STATUS.OPEN),
+      statusColor: new FormControl(POSSIBLE_STATUS_COLOR.SECONDARY),
+    },
+    { validators: cpfValidator }
+  );
 
   options: string[] = [];
 
   onSubmit() {
+    console.log(this.applyForm.errors);
+    if (this.applyForm.invalid) {
+      return;
+    }
+
     const { task, cpf, responsible, dueDate, status, statusColor } =
       this.applyForm.value;
 
@@ -62,5 +76,10 @@ export class AppComponent {
     });
 
     this.dataSource = this.todoListService.listToDos();
+  }
+
+  // Form getters
+  get taskName() {
+    return this.applyForm.get('task');
   }
 }

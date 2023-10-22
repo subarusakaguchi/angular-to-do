@@ -7,7 +7,7 @@
 // Definition of the color palettes
 $my-primary: mat.define-palette(mat.$green-palette, 500);
 $my-accent: mat.define-palette(custom.$info500, 500);
-$my-warn: mat.define-palette(custom.$warn500, 500);
+$my-warn: mat.define-palette(mat.$red-palette, 500);
 $my-success: mat.define-palette(custom.$success500, 500);
 $my-info: mat.define-palette(custom.$info500, 500);
 
