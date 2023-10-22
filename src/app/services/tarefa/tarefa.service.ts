@@ -7,6 +7,7 @@ import {
   TaskRowInfo,
 } from '../../components/tarefa-lista-component/interfaces';
 import { StorageService } from '../storage/storage.service';
+import * as dayjs from 'dayjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,31 @@ export class TarefaService {
     this.list = updatedList ?? [];
   }
 
+  private checkDataDatesAndUpdate(withUpdate: boolean) {
+    if (withUpdate) this.getOnStorage();
+
+    const updatedList = this.list.map((item) => {
+      const dateSplit = item.dueDate.split('/');
+
+      const referenceDueDate = dayjs(
+        `${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`
+      );
+
+      if (dayjs().isAfter(referenceDueDate) && item.status !== 'Concluído') {
+        item.status = 'Expirado';
+        item.statusColor = 'warn';
+      }
+
+      return item;
+    });
+
+    const newToDoList = [...updatedList];
+
+    this.list = newToDoList;
+  }
+
   listToDos(): TaskRowInfo[] {
+    this.checkDataDatesAndUpdate(true);
     return this.list;
   }
 
@@ -54,6 +79,8 @@ export class TarefaService {
     });
 
     this.list = newTodoList;
+
+    this.checkDataDatesAndUpdate(false);
 
     this.saveOnStorage();
 
@@ -82,12 +109,24 @@ export class TarefaService {
     const updatedTodo = this.list.find((item) => item.taskId === id);
 
     if (updatedTodo) {
+      const dateSplit = updatedTodo.dueDate.split('/');
+
+      const referenceDueDate = dayjs(
+        `${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`
+      );
+
       if (updatedTodo.isCompleted) {
-        updatedTodo.isCompleted = !updatedTodo.isCompleted;
-        updatedTodo.status = POSSIBLE_TASK_STATUS.OPEN;
-        updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.SECONDARY;
+        if (dayjs().isAfter(referenceDueDate)) {
+          updatedTodo.isCompleted = false;
+          updatedTodo.status = POSSIBLE_TASK_STATUS.EXPIRED;
+          updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.WARN;
+        } else {
+          updatedTodo.isCompleted = false;
+          updatedTodo.status = POSSIBLE_TASK_STATUS.OPEN;
+          updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.SECONDARY;
+        }
       } else {
-        updatedTodo.isCompleted = !updatedTodo.isCompleted;
+        updatedTodo.isCompleted = true;
         updatedTodo.status = POSSIBLE_TASK_STATUS.CLOSED;
         updatedTodo.statusColor = POSSIBLE_STATUS_COLOR.PRIMARY;
       }

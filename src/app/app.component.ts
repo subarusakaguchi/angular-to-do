@@ -44,7 +44,16 @@ export class AppComponent {
   options: string[] = [];
 
   onSubmit() {
-    console.log(this.applyForm.errors);
+    if (
+      !this.applyForm.value.cpf ||
+      (this.applyForm.errors &&
+        (this.applyForm.errors.invalidFormat ||
+          this.applyForm.errors.invalidCPF))
+    ) {
+      alert('CPF Inválido!');
+      return;
+    }
+
     if (this.applyForm.invalid) {
       return;
     }
@@ -66,14 +75,22 @@ export class AppComponent {
       isCompleted: false,
     });
 
-    this.applyForm = new FormGroup({
-      task: new FormControl(''),
-      cpf: new FormControl(''),
-      responsible: new FormControl(''),
-      dueDate: new FormControl(''),
-      status: new FormControl(POSSIBLE_TASK_STATUS.OPEN),
-      statusColor: new FormControl(POSSIBLE_STATUS_COLOR.SECONDARY),
-    });
+    this.applyForm = new FormGroup(
+      {
+        task: new FormControl('', [Validators.required]),
+        cpf: new FormControl('', [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(11),
+          Validators.pattern(/(\d{3})(\d{3})(\d{3})(\d{2})/),
+        ]),
+        responsible: new FormControl('', [Validators.required]),
+        dueDate: new FormControl(''),
+        status: new FormControl(POSSIBLE_TASK_STATUS.OPEN),
+        statusColor: new FormControl(POSSIBLE_STATUS_COLOR.SECONDARY),
+      },
+      { validators: cpfValidator }
+    );
 
     this.dataSource = this.todoListService.listToDos();
   }

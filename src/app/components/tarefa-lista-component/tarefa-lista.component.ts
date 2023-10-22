@@ -35,8 +35,7 @@ export class TarefaListaComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
-    console.log(this.dataSource);
-    if (this.dataSource) {
+    if (this.dataSource && this.table) {
       this.table.renderRows();
     }
   }
@@ -58,7 +57,6 @@ export class TarefaListaComponent implements OnInit {
   }
 
   handleTaskFilter(filterValue: FilterValues) {
-    console.log(filterValue);
     let newDataSource = this.dataSource;
 
     if (filterValue === 'all') {
