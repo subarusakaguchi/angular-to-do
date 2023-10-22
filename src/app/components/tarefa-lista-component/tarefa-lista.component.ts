@@ -7,7 +7,11 @@ import {
   Output,
 } from '@angular/core';
 import { TarefaService } from 'src/app/services/tarefa-service.service';
-import { TaskRowInfo } from './interfaces';
+import {
+  POSSIBLE_STATUS_COLOR,
+  POSSIBLE_TASK_STATUS,
+  TaskRowInfo,
+} from './interfaces';
 import { MatTable } from '@angular/material/table';
 
 @Component({
@@ -36,8 +40,15 @@ export class TarefaListaComponent implements OnInit {
 
   ngOnChanges(): void {
     if (this.dataSource) {
-      console.log('Teste');
       this.table.renderRows();
+    }
+  }
+
+  handleCheckbox(id: number) {
+    const newDataSource = this.todoListService.changeCheckBoxStatus(id);
+
+    if (newDataSource) {
+      this.dataSource = newDataSource;
     }
   }
 }
