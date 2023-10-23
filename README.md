@@ -20,6 +20,8 @@ O objetivo é criar uma aplicação capaz de listar uma tabela que englobe Taref
 
 Baseado nas especificações, montei um mapa para me ajudar no desenvolvimento da aplicação:
 
+![Sem título-2023-06-14-1821](https://github.com/subarusakaguchi/angular-to-do/assets/50173813/c5f6c34a-e639-44c0-b14a-d73c65ba142b)
+
 ## Tecnologias utilizadas
 
 - **Angular 12**: Tecnologia para desenvolvimento da aplicação.
